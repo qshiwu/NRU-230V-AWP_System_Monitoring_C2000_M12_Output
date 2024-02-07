@@ -21,7 +21,10 @@ float Voltage_P12VSUS_SENSE;
 float Voltage_P12VSUS_ISMON;
 float Voltage_P5VSUS_SENSE;
 
+float RESULT_DCIN_SENSE;
+float RESULT_P12VSUS_SENSE;
 float CURRENT_P12VSUS_ISMON;
+float RESULT_P5VSUS_SENSE;
 
 float Voltage_TMP_SENSE0;
 float Voltage_TMP_SENSE1;

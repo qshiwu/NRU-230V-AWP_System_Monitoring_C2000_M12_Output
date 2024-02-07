@@ -63,17 +63,20 @@ int main(int argc, char **argv)
 			ADC_P12VSUS_ISMON = (frame.data[4] << 8) | frame.data[5];
 			ADC_P5VSUS_SENSE = (frame.data[6] << 8) | frame.data[7];
 
-			Voltage_DCIN_SENSE = ((float)ADC_DCIN_SENSE / pow(2,11)) * 3.3;
-			Voltage_P12VSUS_SENSE = ((float)ADC_P12VSUS_SENSE / pow(2,11)) * 3.3;
-			Voltage_P12VSUS_ISMON = ((float)ADC_P12VSUS_ISMON / pow(2,11)) * 3.3;
-			Voltage_P5VSUS_SENSE = ((float)ADC_P5VSUS_SENSE / pow(2,11)) * 3.3;
+			Voltage_DCIN_SENSE = ((float)ADC_DCIN_SENSE / pow(2,11)) * 3.3f;
+			Voltage_P12VSUS_SENSE = ((float)ADC_P12VSUS_SENSE / pow(2,11)) * 3.3f;
+			Voltage_P12VSUS_ISMON = ((float)ADC_P12VSUS_ISMON / pow(2,11)) * 3.3f;
+			Voltage_P5VSUS_SENSE = ((float)ADC_P5VSUS_SENSE / pow(2,11)) * 3.3f;
 
-			CURRENT_P12VSUS_ISMON = (Voltage_P12VSUS_ISMON - 0.25) * 28.57;
+			RESULT_DCIN_SENSE = Voltage_DCIN_SENSE * 32 / 2;
+			RESULT_P12VSUS_SENSE = Voltage_P12VSUS_SENSE * 12 / 2;
+			CURRENT_P12VSUS_ISMON = (Voltage_P12VSUS_ISMON - 0.25f) * 28.57f;
+			RESULT_P5VSUS_SENSE = Voltage_P5VSUS_SENSE * 12 / 2;
 
-			printf("%s 0x%04X %.2fV\r\n", "ADC_DCIN_SENSE", ADC_DCIN_SENSE, Voltage_DCIN_SENSE);
-			printf("%s 0x%04X %.2fV\r\n", "ADC_P12VSUS_SENSE", ADC_P12VSUS_SENSE, Voltage_P12VSUS_SENSE);
+			printf("%s 0x%04X %.2fV %.2fV\r\n", "ADC_DCIN_SENSE", ADC_DCIN_SENSE, Voltage_DCIN_SENSE, RESULT_DCIN_SENSE);
+			printf("%s 0x%04X %.2fV %.2fV\r\n", "ADC_P12VSUS_SENSE", ADC_P12VSUS_SENSE, Voltage_P12VSUS_SENSE, RESULT_P12VSUS_SENSE);
 			printf("%s 0x%04X %.2fV %.2fmA\r\n", "ADC_P12VSUS_ISMON", ADC_P12VSUS_ISMON, Voltage_P12VSUS_ISMON, CURRENT_P12VSUS_ISMON);
-			printf("%s 0x%04X %.2fV\r\n", "ADC_P5VSUS_SENSE", ADC_P5VSUS_SENSE, Voltage_P5VSUS_SENSE);
+			printf("%s 0x%04X %.2fV %.2fV\r\n", "ADC_P5VSUS_SENSE", ADC_P5VSUS_SENSE, Voltage_P5VSUS_SENSE, RESULT_P5VSUS_SENSE);
 			printf("\r\n");
 		}
 		else if(frame.can_id == 0x1B0A0002)
@@ -83,10 +86,10 @@ int main(int argc, char **argv)
 			ADC_TMP_SENSE2 = (frame.data[4] << 8) | frame.data[5];
 			ADC_TMP_SENSE3 = (frame.data[6] << 8) | frame.data[7];
 
-			Voltage_TMP_SENSE0 = ((float)ADC_TMP_SENSE0 / pow(2,11)) * 3.3;
-			Voltage_TMP_SENSE1 = ((float)ADC_TMP_SENSE1 / pow(2,11)) * 3.3;
-			Voltage_TMP_SENSE2 = ((float)ADC_TMP_SENSE2 / pow(2,11)) * 3.3;
-			Voltage_TMP_SENSE3 = ((float)ADC_TMP_SENSE3 / pow(2,11)) * 3.3;
+			Voltage_TMP_SENSE0 = ((float)ADC_TMP_SENSE0 / pow(2,11)) * 3.3f;
+			Voltage_TMP_SENSE1 = ((float)ADC_TMP_SENSE1 / pow(2,11)) * 3.3f;
+			Voltage_TMP_SENSE2 = ((float)ADC_TMP_SENSE2 / pow(2,11)) * 3.3f;
+			Voltage_TMP_SENSE3 = ((float)ADC_TMP_SENSE3 / pow(2,11)) * 3.3f;
 
 			DEGREE_TMP_SENSE0 = interpolate(Voltage_TMP_SENSE0, Voltage2Temp, tableSize);
 			DEGREE_TMP_SENSE1 = interpolate(Voltage_TMP_SENSE1, Voltage2Temp, tableSize);
@@ -103,7 +106,7 @@ int main(int argc, char **argv)
 		{
 			ADC_TMP_SENSE4 = (frame.data[0] << 8) | frame.data[1];
 
-			Voltage_TMP_SENSE4 = ((float)ADC_TMP_SENSE4 / pow(2,11)) * 3.3;
+			Voltage_TMP_SENSE4 = ((float)ADC_TMP_SENSE4 / pow(2,11)) * 3.3f;
 			DEGREE_TMP_SENSE4 = interpolate(Voltage_TMP_SENSE4, Voltage2Temp, tableSize);
 
 			printf("%s 0x%04X %.2fV %.2fC\r\n", "ADC_TMP_SENSE4", ADC_TMP_SENSE4, Voltage_TMP_SENSE4, DEGREE_TMP_SENSE4);
