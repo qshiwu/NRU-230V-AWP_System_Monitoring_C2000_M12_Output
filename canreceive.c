@@ -73,10 +73,10 @@ int main(int argc, char **argv)
 			CURRENT_P12VSUS_ISMON = (Voltage_P12VSUS_ISMON - 0.25f) * 28.57f;
 			RESULT_P5VSUS_SENSE = Voltage_P5VSUS_SENSE * 12 / 2;
 
-			printf("%s 0x%04X %.2fV %.2fV\r\n", "ADC_DCIN_SENSE", ADC_DCIN_SENSE, Voltage_DCIN_SENSE, RESULT_DCIN_SENSE);
-			printf("%s 0x%04X %.2fV %.2fV\r\n", "ADC_P12VSUS_SENSE", ADC_P12VSUS_SENSE, Voltage_P12VSUS_SENSE, RESULT_P12VSUS_SENSE);
-			printf("%s 0x%04X %.2fV %.2fmA\r\n", "ADC_P12VSUS_ISMON", ADC_P12VSUS_ISMON, Voltage_P12VSUS_ISMON, CURRENT_P12VSUS_ISMON);
-			printf("%s 0x%04X %.2fV %.2fV\r\n", "ADC_P5VSUS_SENSE", ADC_P5VSUS_SENSE, Voltage_P5VSUS_SENSE, RESULT_P5VSUS_SENSE);
+			printf("%s %.2fV\r\n", "ADC_DCIN_SENSE", RESULT_DCIN_SENSE);
+			printf("%s %.2fV\r\n", "ADC_P12VSUS_SENSE", RESULT_P12VSUS_SENSE);
+			printf("%s %.2fmA\r\n", "ADC_P12VSUS_ISMON", CURRENT_P12VSUS_ISMON);
+			printf("%s %.2fV\r\n", "ADC_P5VSUS_SENSE", RESULT_P5VSUS_SENSE);
 			printf("\r\n");
 		}
 		else if(frame.can_id == 0x1B0A0002)
@@ -97,10 +97,10 @@ int main(int argc, char **argv)
 			DEGREE_TMP_SENSE3 = interpolate(Voltage_TMP_SENSE3, Voltage2Temp, tableSize);
 
 
-			printf("%s 0x%04X %.2fV %.2fC\r\n", "ADC_TMP_SENSE0", ADC_TMP_SENSE0, Voltage_TMP_SENSE0, DEGREE_TMP_SENSE0);
-			printf("%s 0x%04X %.2fV %.2fC\r\n", "ADC_TMP_SENSE1", ADC_TMP_SENSE1, Voltage_TMP_SENSE1, DEGREE_TMP_SENSE1);
-			printf("%s 0x%04X %.2fV %.2fC\r\n", "ADC_TMP_SENSE2", ADC_TMP_SENSE2, Voltage_TMP_SENSE2, DEGREE_TMP_SENSE2);
-			printf("%s 0x%04X %.2fV %.2fC\r\n", "ADC_TMP_SENSE3", ADC_TMP_SENSE3, Voltage_TMP_SENSE3, DEGREE_TMP_SENSE3);
+			printf("%s %.2fC\r\n", "ADC_TMP_SENSE0", DEGREE_TMP_SENSE0);
+			printf("%s %.2fC\r\n", "ADC_TMP_SENSE1", DEGREE_TMP_SENSE1);
+			printf("%s %.2fC\r\n", "ADC_TMP_SENSE2", DEGREE_TMP_SENSE2);
+			printf("%s %.2fC\r\n", "ADC_TMP_SENSE3", DEGREE_TMP_SENSE3);
 		}
 		else if(frame.can_id == 0x1B0A0003)
 		{
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
 			Voltage_TMP_SENSE4 = ((float)ADC_TMP_SENSE4 / pow(2,11)) * 3.3f;
 			DEGREE_TMP_SENSE4 = interpolate(Voltage_TMP_SENSE4, Voltage2Temp, tableSize);
 
-			printf("%s 0x%04X %.2fV %.2fC\r\n", "ADC_TMP_SENSE4", ADC_TMP_SENSE4, Voltage_TMP_SENSE4, DEGREE_TMP_SENSE4);
+			printf("%s %.2fC\r\n", "ADC_TMP_SENSE4", DEGREE_TMP_SENSE4);
 			printf("\r\n");
 		}
 		else
