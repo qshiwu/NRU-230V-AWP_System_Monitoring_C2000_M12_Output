@@ -38,12 +38,41 @@ float DEGREE_TMP_SENSE2;
 float DEGREE_TMP_SENSE3;
 float DEGREE_TMP_SENSE4;
 
+unsigned short PC_RAM;
+unsigned short PC_CPU0;
+unsigned short PC_CPU1;
+unsigned short PC_CPU2;
+unsigned short PC_CPU3;
+unsigned short PC_CPU4;
+unsigned short PC_CPU5;
+unsigned short PC_CPU6;
+unsigned short PC_CPU7;
+unsigned long PC_CV0_TEMP;
+unsigned long PC_CV1_TEMP;
+unsigned long PC_CV2_TEMP;
+unsigned long PC_CPU_TEMP;
+unsigned long PC_GPU_TEMP;
+unsigned long PC_BOARD_TEMP;
+unsigned long PC_SOC0_TEMP;
+unsigned long PC_SOC1_TEMP;
+unsigned long PC_SOC2_TEMP;
+unsigned long PC_TDIODE_TEMP;
+unsigned long PC_TJ_TEMP;
+
 typedef struct ThermalTable
 {
     float voltage;
     int  temperature;
 } ThermalTable_t;
 
+typedef union H_Float
+{
+    unsigned long data;
+    float value;
+}H_Float;
+
 float interpolate(float x, ThermalTable_t table[], size_t tableSize);
+unsigned long FloatToIEEE754_simple(float fInput);
+float HexToIEEE754_simple(unsigned long hInput);
 
 #endif

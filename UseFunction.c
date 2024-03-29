@@ -24,3 +24,17 @@ float interpolate(float x, ThermalTable_t table[], size_t tableSize)
     return y0 - (x0 - x) * (y0 - y1) / (x0 - x1);
 }
 
+unsigned long FloatToIEEE754_simple(float fInput)
+{
+    H_Float tmp;
+    tmp.value = fInput;
+    return tmp.data;
+}
+
+float HexToIEEE754_simple(unsigned long hInput)
+{
+    H_Float tmp;
+    tmp.data = hInput;
+    return tmp.value;
+}
+
