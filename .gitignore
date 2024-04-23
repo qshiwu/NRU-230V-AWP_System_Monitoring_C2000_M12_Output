@@ -1,3 +1,4 @@
+.vscode/
 PrintMCUCan
 UseFunction.o
 canreceive.o

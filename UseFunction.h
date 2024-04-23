@@ -26,6 +26,14 @@ float RESULT_P12VSUS_SENSE;
 float CURRENT_P12VSUS_ISMON;
 float RESULT_P5VSUS_SENSE;
 
+unsigned char TMS320_SUS_PWR_OK;
+unsigned char TMS320_MODULE_POWER_ON;
+unsigned char TMS320_BIOS_OK;
+unsigned char TMS320_MAIN_PWR_OK;
+unsigned char TMS320_MODULE_SHDN_N;
+unsigned char TMS320_CARRIER_POWER_ON;
+
+
 float Voltage_TMP_SENSE0;
 float Voltage_TMP_SENSE1;
 float Voltage_TMP_SENSE2;
@@ -72,6 +80,7 @@ typedef union H_Float
 }H_Float;
 
 float interpolate(float x, ThermalTable_t table[], size_t tableSize);
+char *PrintHighLow(int value);
 unsigned long FloatToIEEE754_simple(float fInput);
 float HexToIEEE754_simple(unsigned long hInput);
 

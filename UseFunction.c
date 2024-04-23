@@ -24,6 +24,17 @@ float interpolate(float x, ThermalTable_t table[], size_t tableSize)
     return y0 - (x0 - x) * (y0 - y1) / (x0 - x1);
 }
 
+char *PrintHighLow(int value)
+{
+    char *Result;
+    if(value == 0)
+        Result = "LOW";
+    else
+        Result = "HIGH";
+        
+    return Result;
+}
+
 unsigned long FloatToIEEE754_simple(float fInput)
 {
     H_Float tmp;
