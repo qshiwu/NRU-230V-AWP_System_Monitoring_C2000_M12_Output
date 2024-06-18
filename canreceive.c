@@ -151,52 +151,16 @@ int main(int argc, char **argv)
 		}
 		else if(frame.can_id == 0x1B0A0006)
 		{
-			PC_CV0_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
-			PC_CV1_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
-
-			printf("%s %.3fC\r\n", "PC_CV0_TEMP", HexToIEEE754_simple(PC_CV0_TEMP));
-			printf("%s %.3fC\r\n", "PC_CV1_TEMP", HexToIEEE754_simple(PC_CV1_TEMP));
+			PC_RAM = (frame.data[0] << 8) | frame.data[1];
+			printf("%s %dMB\r\n", "PC_RAM", PC_RAM);
 		}
 		else if(frame.can_id == 0x1B0A0007)
 		{
-			PC_CV2_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
+			PC_GPU_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
 			PC_CPU_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
 
-			printf("%s %.3fC\r\n", "PC_CV2_TEMP", HexToIEEE754_simple(PC_CV2_TEMP));
-			printf("%s %.3fC\r\n", "PC_CPU_TEMP", HexToIEEE754_simple(PC_CPU_TEMP));
-		}
-		else if(frame.can_id == 0x1B0A0008)
-		{
-			PC_GPU_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
-			PC_BOARD_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
-
 			printf("%s %.3fC\r\n", "PC_GPU_TEMP", HexToIEEE754_simple(PC_GPU_TEMP));
-			printf("%s %.3fC\r\n", "PC_BOARD_TEMP", HexToIEEE754_simple(PC_BOARD_TEMP));
-		}
-		else if(frame.can_id == 0x1B0A0009)
-		{
-			PC_SOC0_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
-			PC_SOC1_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
-
-			printf("%s %.3fC\r\n", "PC_SOC0_TEMP", HexToIEEE754_simple(PC_SOC0_TEMP));
-			printf("%s %.3fC\r\n", "PC_SOC1_TEMP", HexToIEEE754_simple(PC_SOC1_TEMP));
-		}
-		else if(frame.can_id == 0x1B0A000A)
-		{
-			PC_SOC2_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
-			PC_TDIODE_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
-
-			printf("%s %.3fC\r\n", "PC_SOC2_TEMP", HexToIEEE754_simple(PC_SOC2_TEMP));
-			printf("%s %.3fC\r\n", "PC_TDIODE_TEMP", HexToIEEE754_simple(PC_TDIODE_TEMP));
-		}
-		else if(frame.can_id == 0x1B0A000B)
-		{
-			PC_TJ_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
-			PC_RAM = (frame.data[4] << 8) | frame.data[5];
-
-			printf("%s %.3fC\r\n", "PC_TJ_TEMP", HexToIEEE754_simple(PC_TJ_TEMP));
-			printf("%s %dMB\r\n", "PC_RAM", PC_RAM);
-			printf("\r\n");
+			printf("%s %.3fC\r\n", "PC_CPU_TEMP", HexToIEEE754_simple(PC_CPU_TEMP));
 		}
 		else
 		{
