@@ -111,7 +111,6 @@ int main(int argc, char **argv)
 			TMS320_MAIN_PWR_OK = frame.data[5];
 			TMS320_MODULE_SHDN_N = frame.data[6];
 			TMS320_CARRIER_POWER_ON = frame.data[7];
-			//PC_RAM = (frame.data[2] << 8) | frame.data[3];
 
 			Voltage_TMP_SENSE4 = ((float)ADC_TMP_SENSE4 / pow(2,11)) * 3.3f;
 			DEGREE_TMP_SENSE4 = interpolate(Voltage_TMP_SENSE4, Voltage2Temp, tableSize);
@@ -156,11 +155,12 @@ int main(int argc, char **argv)
 		}
 		else if(frame.can_id == 0x1B0A0007)
 		{
-			PC_GPU_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
-			PC_CPU_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
+			PC_CPU_TEMP = (frame.data[0] << 24) | (frame.data[1] << 16) | (frame.data[2] << 8) | frame.data[3];
+			PC_GPU_TEMP = (frame.data[4] << 24) | (frame.data[5] << 16) | (frame.data[6] << 8) | frame.data[7];
 
-			printf("%s %.3fC\r\n", "PC_GPU_TEMP", HexToIEEE754_simple(PC_GPU_TEMP));
 			printf("%s %.3fC\r\n", "PC_CPU_TEMP", HexToIEEE754_simple(PC_CPU_TEMP));
+			printf("%s %.3fC\r\n", "PC_GPU_TEMP", HexToIEEE754_simple(PC_GPU_TEMP));
+			printf("\r\n");
 		}
 		else
 		{
