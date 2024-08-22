@@ -13,6 +13,7 @@
 
 #include "UseFunction.h"
 #include "ThermalTable.h"
+#include "canreceive.h"
 
 int main(int argc, char **argv)
 {
